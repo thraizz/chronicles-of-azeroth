@@ -1,25 +1,34 @@
-# CODING AGENTS: READ THIS FIRST
+# Timeline of Azeroth
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+A static, interactive timeline of Warcraft's lore — from the Titans to the present day. Built with [Astro](https://astro.build/).
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+## Development
 
-## What you should do — IMPORTANT
+Requires Node.js 18+.
 
-**Read the chat transcripts first.** There are 1 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+```bash
+npm install
+npm run dev
+```
 
-**Read `project/Timeline of Azeroth.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+The site is served at `http://localhost:4321`.
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+## Scripts
 
-## About the design files
+| Command           | Description                              |
+| ----------------- | ---------------------------------------- |
+| `npm run dev`     | Start the local development server       |
+| `npm run build`   | Build the static site to `dist/`         |
+| `npm run preview` | Preview the production build locally     |
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+## Deployment
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+The site is a fully static build and deploys to Cloudflare Pages. The `dist/` directory contains the deployable output after `npm run build`.
 
-## Bundle contents
+## Disclaimer
 
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `wow timeline` project files (HTML prototypes, assets, components)
+This is an unofficial fan project. Warcraft and all related characters, artwork, and lore are trademarks of Blizzard Entertainment, Inc. This project is not affiliated with or endorsed by Blizzard.
+
+## License
+
+MIT
