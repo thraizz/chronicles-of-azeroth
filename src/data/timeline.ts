@@ -1,4 +1,4 @@
-// Chronicle of Azeroth — timeline data (full history through The War Within)
+// Timeline of Azeroth — timeline data (full history through The War Within)
 
 export type Era = {
   id: string;
@@ -630,7 +630,7 @@ export const EVENTS: TimelineEvent[] = [
     body:
       "The black dragonflight raises the Obsidian Citadel. The first great towers of Vakthros climb above what will one day be called the Azure Span.",
     detail:
-      "For a moment, the new order looks like it might hold. Roads of stone, cities of scale, a watchful peace between flights. It is — like every peace in this chronicle — temporary.",
+      "For a moment, the new order looks like it might hold. Roads of stone, cities of scale, a watchful peace between flights. It is — like every peace in this timeline — temporary.",
     refs: ["War of the Scaleborn, part 2"],
     tags: ["Obsidian Citadel", "Vakthros", "Dragon Isles"],
   },
@@ -1550,7 +1550,7 @@ export const EVENTS: TimelineEvent[] = [
     body:
       "Deep in the Nerub-ar Palace, beneath the bones of the ancient nerubian empire, the consequences of Xal’atath’s plan cascade into a confrontation that threatens to wake the sleeping worldsoul before its time.",
     detail:
-      "The First Ones built the cosmos knowing that worldsouls are the most precious and powerful things in existence. Everything in this chronicle — every war, every betrayal, every act of desperate heroism — has been, in the end, about what Azeroth is becoming. The chronicle is not over. The world is not done dreaming.",
+      "The First Ones built the cosmos knowing that worldsouls are the most precious and powerful things in existence. Everything in this timeline — every war, every betrayal, every act of desperate heroism — has been, in the end, about what Azeroth is becoming. The timeline is not over. The world is not done dreaming.",
     refs: [],
     tags: ["Worldsoul", "Nerub-ar", "Azeroth", "Xal’atath"],
     feature: true,

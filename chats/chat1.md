@@ -32,7 +32,7 @@ _[tool: snip]_
 
 _[tool: fork_verifier_agent]_
 
-I've built **Chronicle of Azeroth** — a vertical scroll experience through Warcraft lore.
+I've built **Timeline of Azeroth** — a vertical scroll experience through Warcraft lore.
 
 **The design system:**
 - **Type:** Cinzel for display (channels Friz Quadrata's ceremonial weight), Cormorant Garamond for body — a parchment-reading rhythm
@@ -41,7 +41,7 @@ I've built **Chronicle of Azeroth** — a vertical scroll experience through War
 
 **UX touches:**
 - Floating Roman-numeral era nav that highlights as you scroll
-- Top progress bar showing position through the chronicle
+- Top progress bar showing position through the timeline
 - Click any event card to *unfurl* the deeper lore + source citations
 - Scroll-triggered reveal animations on every card
 - Drifting starfield behind everything
