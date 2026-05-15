@@ -1,0 +1,14 @@
+---
+interface Props {
+  id: string;
+  text: string;
+  cite: string;
+}
+
+const { id, text, cite } = Astro.props;
+---
+
+<div class="pullquote reveal" id={id}>
+  <p>{text}</p>
+  <cite>{cite}</cite>
+</div>

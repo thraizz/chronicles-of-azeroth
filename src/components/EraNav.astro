@@ -1,0 +1,23 @@
+---
+import type { Era } from "../data/timeline.ts";
+
+interface Props {
+  eras: Era[];
+}
+
+const { eras } = Astro.props;
+---
+
+<nav class="eranav" data-eranav>
+  {eras.map((e, i) => (
+    <a
+      href={`#era-${e.id}`}
+      class={`eranav-item${i === 0 ? " active" : ""}`}
+      data-era-id={e.id}
+    >
+      <span class="dot"></span>
+      <span class="num">{e.chapter}</span>
+      <span class="lbl">{e.title}</span>
+    </a>
+  ))}
+</nav>

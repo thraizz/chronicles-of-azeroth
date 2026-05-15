@@ -1,0 +1,91 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Era from "../components/Era.astro";
+import EraNav from "../components/EraNav.astro";
+import Progress from "../components/Progress.astro";
+import Pullquote from "../components/Pullquote.astro";
+import Footer from "../components/Footer.astro";
+import { ERAS, EVENTS, PULLQUOTES } from "../data/timeline.ts";
+
+const eventsByEra = new Map<string, typeof EVENTS>();
+for (const era of ERAS) eventsByEra.set(era.id, []);
+for (const ev of EVENTS) eventsByEra.get(ev.era)?.push(ev);
+
+const pullquoteByIndex = new Map(PULLQUOTES.map((p) => [p.afterEraIndex, p]));
+---
+
+<Base>
+  <Progress />
+  <div class="starfield"></div>
+  <EraNav eras={ERAS} />
+  <Hero />
+  {
+    ERAS.map((era, i) => (
+      <>
+        <Era era={era} events={eventsByEra.get(era.id) ?? []} />
+        {pullquoteByIndex.has(i) && (
+          <Pullquote {...pullquoteByIndex.get(i)!} />
+        )}
+      </>
+    ))
+  }
+  <Footer />
+</Base>
+
+<script>
+  // Reveal-on-scroll: any .reveal element fades/slides in when it enters view.
+  const reveals = document.querySelectorAll(".reveal");
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          revealObserver.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0.15 },
+  );
+  reveals.forEach((el) => revealObserver.observe(el));
+
+  // Event-card expand/collapse on click.
+  document.querySelectorAll<HTMLElement>(".event .event-card").forEach((card) => {
+    card.addEventListener("click", () => card.classList.toggle("open"));
+  });
+
+  // Side-nav active-era tracking driven by which era is visible.
+  const navItems = new Map<string, HTMLElement>();
+  document.querySelectorAll<HTMLElement>(".eranav-item[data-era-id]").forEach((el) => {
+    const id = el.dataset.eraId;
+    if (id) navItems.set(id, el);
+  });
+
+  const eraSections = document.querySelectorAll<HTMLElement>("section.era[id]");
+  const eraObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.2) {
+          const id = entry.target.id.replace("era-", "");
+          for (const [navId, el] of navItems) {
+            el.classList.toggle("active", navId === id);
+          }
+        }
+      }
+    },
+    { threshold: [0.2, 0.5] },
+  );
+  eraSections.forEach((s) => eraObserver.observe(s));
+
+  // Scroll progress bar (top of viewport).
+  const progressEl = document.querySelector<HTMLElement>("[data-progress]");
+  if (progressEl) {
+    const updateProgress = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const p = h > 0 ? window.scrollY / h : 0;
+      progressEl.style.transform = `scaleX(${p})`;
+    };
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+  }
+</script>

@@ -1,0 +1,26 @@
+---
+import type { Era, TimelineEvent } from "../data/timeline.ts";
+import EventCard from "./EventCard.astro";
+import Ornament from "./Ornament.astro";
+
+interface Props {
+  era: Era;
+  events: TimelineEvent[];
+}
+
+const { era, events } = Astro.props;
+---
+
+<section class="era" data-palette={era.palette} id={`era-${era.id}`}>
+  <header class="era-header reveal">
+    <div class="era-chapter">Chapter {era.chapter}</div>
+    <h2 class="era-title">{era.title}</h2>
+    <div class="era-subtitle">{era.subtitle}</div>
+    <div class="era-date">{era.dateLabel}</div>
+    <p class="era-blurb">{era.blurb}</p>
+    <Ornament />
+  </header>
+  <div class="timeline">
+    {events.map((ev) => <EventCard ev={ev} />)}
+  </div>
+</section>
